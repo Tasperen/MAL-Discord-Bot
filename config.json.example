@@ -1,0 +1,5 @@
+{
+	"mal_username"	: "A username for an MAL account",
+	"mal_password"	: "A password for an MAL account",
+    "bot_token"     : "Bot user token"
+}
