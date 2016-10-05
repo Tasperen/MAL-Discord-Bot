@@ -4,7 +4,6 @@ const client = new Discordie();
 const config = require('./config');
 const https = require('http');
 const parseXML = require('xml2js').parseString;
-const url = require('url');
 const request = require('request');
 
 var lastSearch;
