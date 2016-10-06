@@ -30,12 +30,14 @@ function searchAPI(searchString, channel, callback) {
             data = result;
         });
 
-        lastSearch = data.anime;
+        lastSearch = data ? data.anime : "No results found";
 
-        for (var i = 0; i < data.anime.entry.length; i++) {
-            result += (i + 1) + ": " + data.anime.entry[i].title + "\n";
+        if (data) {
+            for (var i = 0; i < data.anime.entry.length; i++) {
+                result += (i + 1) + ": " + data.anime.entry[i].title + "\n";
+            }
         }
-
+        
         callback(result, channel);
     });
 }
@@ -54,7 +56,7 @@ client.Dispatcher.on("MESSAGE_CREATE", function(event) {
     }
 
     if (!isNaN(message.content)) {
-        if (lastSearch) {
+        if (lastSearch != "No results found") {
             if (+message.content - 1 >= 0 && +message.content - 1 < lastSearch.entry.length) {
                 var animeObject = lastSearch.entry[+message.content - 1];
                 var messageString = "**Title: " + animeObject.title + "**\n\n**Description**: " + animeObject.synopsis.toString().replace(/<br \/>/g, "") + "\n\n**URL**: http://myanimelist.net/anime/" + animeObject.id;
