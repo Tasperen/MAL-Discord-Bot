@@ -38,7 +38,7 @@ function searchAPI(searchString, channel, callback) {
             }
         }
         
-        callback(result, channel);
+        callback(result === "" ? result : "No results found!", channel);
     });
 }
 
